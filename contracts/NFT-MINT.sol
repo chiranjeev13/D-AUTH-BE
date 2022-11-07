@@ -12,45 +12,49 @@ contract NFT_MINT is ERC721, Ownable {
     uint private constant TOKENS_RESERVED = 1;
     uint public price = 100000000000000000;
     uint256 public constant MAX_MINT_PER_TX = 1;
-    mapping (address => bool) verified;
+    mapping(address => bool) verified;
 
     bool public isSaleActive = true;
     uint256 public totalSupply;
     mapping(address => uint256) private mintedPerWallet;
 
     string public baseUri;
-    string public baseExtension = ".json";
     uint256 chk;
+    address[] public verifiedUsers;
+    uint cp=0;
     constructor() ERC721("D-AUTH", "DAU") {
-        baseUri = "https://app.zeeve.io/zdfs-gateway/ipfs/";
-        {
-            _safeMint(msg.sender, TOKENS_RESERVED);
-        }
+        baseUri = "https://app.zeeve.io/zdfs-gateway/ipfs/Qme2D4ezM5AEurGiNkkjgxDUD2Rw1eG75WiSEhuaguBK4k";
         totalSupply = TOKENS_RESERVED;
-        chk=1;
+        chk = 1;
+        
     }
 
-
-    
-
     // Public Functions
-    
 
     function mint(uint256 _numTokens) external payable {
-        require(!verified[msg.sender],"Already verified");
+        require(!verified[msg.sender], "Already verified");
         require(isSaleActive, "The sale is paused.");
-        require(_numTokens <= MAX_MINT_PER_TX, "You cannot mint that many in one transaction.");
-        require(mintedPerWallet[msg.sender] + _numTokens <= MAX_MINT_PER_TX, "You cannot mint that many total.");
+        require(
+            _numTokens <= MAX_MINT_PER_TX,
+            "You cannot mint that many in one transaction."
+        );
+        require(
+            mintedPerWallet[msg.sender] + _numTokens <= MAX_MINT_PER_TX,
+            "You cannot mint that many total."
+        );
         uint256 curTotalSupply = totalSupply;
-        require(curTotalSupply + _numTokens <= MAX_TOKENS, "Exceeds total supply.");
-        //require(_numTokens * price <= msg.value, "Insufficient funds.");
+        require(
+            curTotalSupply + _numTokens <= MAX_TOKENS,
+            "Exceeds total supply."
+        );
 
-        
-            _safeMint(msg.sender, curTotalSupply);
-        
+        _safeMint(msg.sender, curTotalSupply);
+
         mintedPerWallet[msg.sender] += _numTokens;
         totalSupply += _numTokens;
-        verified[msg.sender]=true;
+        cp=1;
+        verified[msg.sender] = true;
+        verifiedUsers.push(msg.sender);
     }
 
     // Owner-only functions
@@ -67,18 +71,35 @@ contract NFT_MINT is ERC721, Ownable {
     }
 
     //tests
-    function getchk() public view returns(uint256)
-    {
+    function getchk() public view returns (uint256) {
         return chk;
     }
 
-    function getTotalSupply() public view returns(uint256)
-    {
+    function getTotalSupply() public view returns (uint256) {
         return totalSupply;
     }
 
-    function getVerifiedstatus() public view returns(bool)
-    {
+    function getVerifiedstatus() public view returns (bool) {
         return verified[msg.sender];
+    }
+    function chekmint() public view returns (uint256)
+    {
+        return verifiedUsers.length;
+    }
+
+    function test2() public view returns (address) {
+        return verifiedUsers[0];
+    }
+
+    function Verifier() public view returns (bool) {
+      address temp = msg.sender;
+
+      for (uint i=0; i<verifiedUsers.length; i++) {
+        if (verifiedUsers[i] == temp) {
+            return true;
+        }
+      }
+
+      return false;
     }
 }

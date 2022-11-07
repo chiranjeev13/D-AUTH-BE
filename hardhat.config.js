@@ -41,17 +41,12 @@ module.exports = {
     fantom: {
       chainId: 4002,
       url: ZEEVE_FANTOM_RPC_URL,
-      accounts: [PRIVATE_KEY]
-    },
-    rinkeby: {
-      url: RINKEBY_RPC_URl,
-
-      chainId: 4,
+      accounts: [PRIVATE_KEY],
     },
   },
   namedAccounts: {
     deployer: {
-        default: 0, 
+      default: 0,
     },
-},
+  },
 };

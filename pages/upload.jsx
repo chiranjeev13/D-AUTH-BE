@@ -1,8 +1,8 @@
 import { Button, TextField } from "@mui/material";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import Header from "../Common/Header";
-import { abi, contractAddress } from "../constants";
+import { abi, contractAddresses } from "../constants";
 import { useMoralis, useWeb3Contract } from "react-moralis";
 
 export default function RouteName() {
@@ -12,10 +12,14 @@ export default function RouteName() {
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
 
+  const { Moralis, isWeb3Enabled, chainId: chainIdHex } = useMoralis()
+  const chainId=parseInt(chainIdHex);
   const DAUTHAddress =
     chainId in contractAddresses ? contractAddresses[chainId][0] : null;
 
   const { asPath } = useRouter();
+
+
 
   const {
     runContractFunction: mint,
@@ -42,9 +46,11 @@ export default function RouteName() {
     contractAddress: DAUTHAddress, // specify the networkId
     functionName: "Verifier",
     params: {
-      args: [tp],
+      args: [],
     },
   });
+
+
   return (
     <div className="bg-white text-blue-500 min-h-screen">
       <Header />

@@ -7,6 +7,8 @@ export default function RouteName() {
   const [name, setName] = useState("");
   const [aadhar, setAadhar] = useState("");
   const [number, setNumber] = useState();
+  const [otpSent, setOtpSent] = useState(false);
+  const [otp, setOtp] = useState("");
 
   const { asPath } = useRouter();
   return (
@@ -50,10 +52,33 @@ export default function RouteName() {
               variant="contained"
               fullWidth
               color="secondary"
+              disabled={otpSent}
+              onClick={() => setOtpSent(true)}
               className="text-purple-800 hover:text-white md:w-auto w-full mt-4"
             >
-              Verify
+              Send OTP
             </Button>
+            {otpSent && <button>Resend OTP</button>}
+
+            {otpSent && (
+              <div className="pt-6 flex flex-col justify-center items-center w-full md:w-auto">
+                <TextField
+                  label="OTP"
+                  value={otp}
+                  fullWidth
+                  onChange={(e) => setOtp(e.target.value)}
+                ></TextField>
+
+                <Button
+                  variant="contained"
+                  fullWidth
+                  color="secondary"
+                  className="text-purple-800 hover:text-white md:w-auto w-full mt-4"
+                >
+                  Submit
+                </Button>
+              </div>
+            )}
           </form>
         </div>
       </div>

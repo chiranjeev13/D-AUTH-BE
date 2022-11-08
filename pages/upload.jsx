@@ -25,6 +25,24 @@ export default function RouteName() {
     data: '{"originator":"SignOTP","recipient":"+919082871739","content":"OTP verification code is: {}","expiry":"600","data_coding":"text"}',
   };
 
+  const request = async () => {
+    try {
+      const response = await fetch(
+        "https://d7-verify.p.rapidapi.com/verify/v1/otp/send-otp",
+        options
+      );
+      if (response.ok) {
+        const json = await response.json();
+        return json;
+      } else {
+        const errorJson = await response.json();
+        throw Error(errorJson);
+      }
+    } catch (error) {
+      return error;
+    }
+  };
+
   async function handleSubmit() {
     // setting the data
     const data = `{"originator":"SignOTP","recipient":"+91${mobile}","content":"OTP verification code is: {}","expiry":"600","data_coding":"text"}`;
@@ -32,15 +50,17 @@ export default function RouteName() {
 
     console.log(data);
 
+    request();
+
     // posting the request
-    axios
-      .request(options)
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-      });
+    // axios
+    //   .request(options)
+    //   .then(function (response) {
+    //     console.log(response.data);
+    //   })
+    //   .catch(function (error) {
+    //     console.error(error);
+    //   });
   }
 
   const { asPath } = useRouter();

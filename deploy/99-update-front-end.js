@@ -1,41 +1,43 @@
-const { ethers, network } = require("hardhat");
+const frontEndAbiFile = "../D-AUTH-FE/constants/abi.json";
+const frontEndContractsFile = "../D-AUTH-FE/constants/contractAddresses.json";
 const fs = require("fs");
-const FRONT_END_ADDRESSES_FILE =
-  "../D-AUTH-FE/constants/contractAddresses.json";
-const FRONT_END_ABI_FILE = "../D-AUTH-FE/constants/abi.json";
-console.log(FRONT_END_ADDRESSES_FILE);
+const { network } = require("hardhat");
 
-module.exports = async function () {
+module.exports = async () => {
   if (process.env.UPDATE_FRONTEND) {
-    console.log("UPDATING frontend!!");
-    updateContractAddress();
-    updateabi();
-    console.log("UPDATED frontend!!");
+    console.log("Writing to front end...");
+    await updateContractAddresses();
+    await updateAbi();
+    console.log("Front end written!");
   }
 };
-async function updateabi() {
+
+async function updateAbi() {
   const NFT_MINT = await ethers.getContract("NFT_MINT");
   fs.writeFileSync(
-    FRONT_END_ABI_FILE,
+    frontEndAbiFile,
     NFT_MINT.interface.format(ethers.utils.FormatTypes.json)
   );
 }
-async function updateContractAddress() {
-  const chainId = network.config.chainId.toString();
-  console.log(chainId);
+
+async function updateContractAddresses() {
   const NFT_MINT = await ethers.getContract("NFT_MINT");
-  const currentAddresses = JSON.parse(
-    fs.readFileSync(FRONT_END_ADDRESSES_FILE, "utf8")
+  const contractAddresses = JSON.parse(
+    fs.readFileSync(frontEndContractsFile, "utf8")
   );
-  if (chainId in currentAddresses) {
-    if (!currentAddresses[chainId].includes(NFT_MINT.address)) {
-      currentAddresses[chainId].push(NFT_MINT.address);
+  if (network.config.chainId.toString() in contractAddresses) {
+    if (
+      !contractAddresses[network.config.chainId.toString()].includes(
+        NFT_MINT.address
+      )
+    ) {
+      contractAddresses[network.config.chainId.toString()].push(
+        NFT_MINT.address
+      );
     }
+  } else {
+    contractAddresses[network.config.chainId.toString()] = [NFT_MINT.address];
   }
-
-  currentAddresses[chainId] = [NFT_MINT.address];
-
-  fs.writeFileSync(FRONT_END_ADDRESSES_FILE, JSON.stringify(currentAddresses));
+  fs.writeFileSync(frontEndContractsFile, JSON.stringify(contractAddresses));
 }
-
 module.exports.tags = ["all", "frontend"];

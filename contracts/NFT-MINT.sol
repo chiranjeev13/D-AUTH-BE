@@ -21,12 +21,12 @@ contract NFT_MINT is ERC721, Ownable {
     string public baseUri;
     uint256 chk;
     address[] public verifiedUsers;
-    uint cp=0;
+    uint cp = 0;
+
     constructor() ERC721("D-AUTH", "DAU") {
         baseUri = "https://app.zeeve.io/zdfs-gateway/ipfs/Qme2D4ezM5AEurGiNkkjgxDUD2Rw1eG75WiSEhuaguBK4k";
         totalSupply = TOKENS_RESERVED;
         chk = 1;
-        
     }
 
     // Public Functions
@@ -52,11 +52,10 @@ contract NFT_MINT is ERC721, Ownable {
 
         mintedPerWallet[msg.sender] += _numTokens;
         totalSupply += _numTokens;
-        cp=1;
+        cp = 1;
         verified[msg.sender] = true;
         verifiedUsers.push(msg.sender);
     }
-
 
     //tests
     function getchk() public view returns (uint256) {
@@ -70,20 +69,20 @@ contract NFT_MINT is ERC721, Ownable {
     function getVerifiedstatus() public view returns (bool) {
         return verified[msg.sender];
     }
-    function chekmint() public view returns (uint256)
-    {
+
+    function chekmint() public view returns (uint256) {
         return verifiedUsers.length;
     }
 
-    function Verifier(address tp) public view returns (bool) {
-      address temp = tp;
+    function Verifier(address tps) public view returns (bool) {
+        address temp = tps;
 
-      for (uint i=0; i<verifiedUsers.length; i++) {
-        if (verifiedUsers[i] == temp) {
-            return true;
+        for (uint i = 0; i < verifiedUsers.length; i++) {
+            if (verifiedUsers[i] == temp) {
+                return true;
+            }
         }
-      }
 
-      return false;
+        return false;
     }
 }

@@ -43,6 +43,7 @@ module.exports = {
       url: ZEEVE_FANTOM_RPC_URL,
       accounts: [PRIVATE_KEY],
     },
+    
   },
   namedAccounts: {
     deployer: {

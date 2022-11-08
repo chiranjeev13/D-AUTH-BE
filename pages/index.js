@@ -1,13 +1,14 @@
 import { useRouter } from "next/router";
 import Header from "../Common/Header";
 import homeImage from "./Images/home.gif";
-import uploadImage from "./Images/upImage.png"
-import veriImage from "./Images/download.png"
-import nftImage from "./Images/test3.png"
+import uploadImage from "./Images/upImage.png";
+import veriImage from "./Images/download.png";
+import nftImage from "./Images/test3.png";
 import Image from "next/image";
 
 export default function RouteName() {
   const { asPath } = useRouter();
+
   return (
     <div className="bg-white text-blue-500 min-h-screen">
       <Header />
@@ -33,10 +34,15 @@ export default function RouteName() {
             What we do:
             <div className="flex flex-col md:flex-row gap-10">
               <div class="max-w-sm rounded overflow-hidden shadow-lg">
-              <div class="flex justify-center items-center w-full h-1/3">
-                <Image src={uploadImage} height="50px" width="50px" alt="Image" />
-              </div>
-              <div class="px-6 py-4">
+                <div class="flex justify-center items-center w-full h-1/3">
+                  <Image
+                    src={uploadImage}
+                    height="50px"
+                    width="50px"
+                    alt="Image"
+                  />
+                </div>
+                <div class="px-6 py-4">
                   <div class="font-bold text-xl mb-2">Upload Information</div>
                   <p class="text-gray-700 text-base">
                     Upload the required information and documents you need to
@@ -47,7 +53,12 @@ export default function RouteName() {
 
               <div class="max-w-sm rounded overflow-hidden shadow-lg">
                 <div class="flex justify-center w-full h-1/3">
-                  <Image height="50px" width="50px" src={veriImage} alt="SImage" />
+                  <Image
+                    height="50px"
+                    width="50px"
+                    src={veriImage}
+                    alt="SImage"
+                  />
                 </div>
                 <div class="px-6 py-4">
                   <div class="font-bold text-xl mb-2">Get Data Verified</div>
@@ -61,12 +72,18 @@ export default function RouteName() {
 
               <div class="max-w-sm rounded overflow-hidden shadow-lg">
                 <div class="flex justify-center w-full h-1/3">
-                  <Image height= "50px" width="50px" src={nftImage} alt="Image" />
+                  <Image
+                    height="50px"
+                    width="50px"
+                    src={nftImage}
+                    alt="Image"
+                  />
                 </div>
                 <div class="px-6 py-4">
                   <div class="font-bold text-xl mb-2">Recieve your NFT</div>
                   <p class="text-gray-700 text-base">
-                    After the verification is completed, user will recieve the NFT based signature for future KYC processing.
+                    After the verification is completed, user will recieve the
+                    NFT based signature for future KYC processing.
                   </p>
                 </div>
               </div>
@@ -100,7 +117,7 @@ export default function RouteName() {
             Get Started
           </span>
         </a>
-        </div>
       </div>
+    </div>
   );
 }

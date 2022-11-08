@@ -1,3 +1,5 @@
+// import { ConnectButton } from "web3uikit";
+
 export default function Header() {
   return (
     <div className="bg-gray-100 shadow-lg">
@@ -11,7 +13,8 @@ export default function Header() {
             About Us
           </a>
           <a className="hover:underline transition duration-200">
-            Connect Wallet
+            {/* <ConnectButton moralisAuth={false} /> */}
+            Connect
           </a>
         </div>
       </div>

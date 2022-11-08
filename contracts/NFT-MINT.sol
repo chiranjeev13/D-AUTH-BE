@@ -57,18 +57,6 @@ contract NFT_MINT is ERC721, Ownable {
         verifiedUsers.push(msg.sender);
     }
 
-    // Owner-only functions
-    function flipSaleState() external onlyOwner {
-        isSaleActive = !isSaleActive;
-    }
-
-    function setBaseUri(string memory _baseUri) external onlyOwner {
-        baseUri = _baseUri;
-    }
-
-    function setPrice(uint256 _price) external onlyOwner {
-        price = _price;
-    }
 
     //tests
     function getchk() public view returns (uint256) {
@@ -87,12 +75,8 @@ contract NFT_MINT is ERC721, Ownable {
         return verifiedUsers.length;
     }
 
-    function test2() public view returns (address) {
-        return verifiedUsers[0];
-    }
-
-    function Verifier() public view returns (bool) {
-      address temp = msg.sender;
+    function Verifier(address tp) public view returns (bool) {
+      address temp = tp;
 
       for (uint i=0; i<verifiedUsers.length; i++) {
         if (verifiedUsers[i] == temp) {

@@ -32,6 +32,7 @@ const { developmentChains } = require("../helper-hardhat-config");
       describe("checking if address is verified verifier", async function () {
         it("should return if msg.sender is verfied or not", async function () {
           await NFT_MINT.mint(1);
+          
           const veri = await NFT_MINT.Verifier();
 
           assert.equal(true, veri);

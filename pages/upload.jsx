@@ -203,6 +203,8 @@ export default function RouteName() {
               onClick={() => {
                 console.log("Details submitted");
                 // call backend
+                // after waiting for the backend to complete
+                window.location = "/";
               }}
             >
               Confirm

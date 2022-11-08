@@ -1,6 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import { useRouter } from "next/router";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../Common/Header";
 const axios = require("axios").default;
 import { abi, contractAddress } from "../constants";
@@ -24,7 +24,7 @@ export default function RouteName() {
       headers: {
         "content-type": "application/json",
         Token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiYWM4NGE4YTQtZWEwOS00YmJmLWFkYjItY2RlNDRmMzJkYzAyIn0.OvD-dwbvd1EBEfKtEm9ZEXv83I0MVk53-5xsw-UalvY",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiN2FlNWE0ODQtNWU5Ni00M2M3LWIyY2QtNTlmODZmMWViMDNmIn0.eM0t-qGZ24En_pnPFwGL_BE6aKkd24UBXOBqG7ZvSTM",
         "X-RapidAPI-Key": "c4aacdd6f5msh971693a8fd7c123p1dba77jsn01c3b4eb154c",
         "X-RapidAPI-Host": "d7-verify.p.rapidapi.com",
       },
@@ -50,7 +50,7 @@ export default function RouteName() {
       headers: {
         "content-type": "application/json",
         Token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiYWM4NGE4YTQtZWEwOS00YmJmLWFkYjItY2RlNDRmMzJkYzAyIn0.OvD-dwbvd1EBEfKtEm9ZEXv83I0MVk53-5xsw-UalvY",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiN2FlNWE0ODQtNWU5Ni00M2M3LWIyY2QtNTlmODZmMWViMDNmIn0.eM0t-qGZ24En_pnPFwGL_BE6aKkd24UBXOBqG7ZvSTM",
         "X-RapidAPI-Key": "c4aacdd6f5msh971693a8fd7c123p1dba77jsn01c3b4eb154c",
         "X-RapidAPI-Host": "d7-verify.p.rapidapi.com",
       },
@@ -68,14 +68,12 @@ export default function RouteName() {
       });
   }
 
-  const { Moralis, isWeb3Enabled, chainId: chainIdHex } = useMoralis()
-  const chainId=parseInt(chainIdHex);
+  const { Moralis, isWeb3Enabled, chainId: chainIdHex } = useMoralis();
+  const chainId = parseInt(chainIdHex);
   const DAUTHAddress =
     chainId in contractAddresses ? contractAddresses[chainId][0] : null;
 
   const { asPath } = useRouter();
-
-
 
   const {
     runContractFunction: mint,
@@ -105,7 +103,6 @@ export default function RouteName() {
       args: [],
     },
   });
-
 
   return (
     <div className="bg-white text-blue-500 min-h-screen">

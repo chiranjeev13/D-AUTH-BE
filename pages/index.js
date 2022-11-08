@@ -1,6 +1,9 @@
 import { useRouter } from "next/router";
 import Header from "../Common/Header";
-import homeImage from "./Images/home.png";
+import homeImage from "./Images/home.gif";
+import uploadImage from "./Images/upImage.png"
+import veriImage from "./Images/download.png"
+import nftImage from "./Images/test3.png"
 import Image from "next/image";
 
 export default function RouteName() {
@@ -9,6 +12,9 @@ export default function RouteName() {
     <div className="bg-white text-blue-500 min-h-screen">
       <Header />
       <div className="p-4">
+        <div className="p-5 font-extrabold text-2xl">
+          Once authenticated, always aquainted...
+        </div>
         <div className="flex flex-col md:flex-row justify-between gap-6 p-4">
           <div className="flex justify-end items-center">
             <Image
@@ -18,11 +24,57 @@ export default function RouteName() {
               height="200px"
             />
           </div>
-          <div className="flex items-center justify-start text-2xl">
-            <p>Get your KYC documents once and for all</p>
+
+          <div className="flex flex-col items-center justify-start text-2xl">
+            <p>
+              Get your KYC documents Verified using our{" "}
+              <b>Zero Knowledge based Blockchain Technology</b>{" "}
+            </p>
+            What we do:
+            <div className="flex flex-col md:flex-row gap-10">
+              <div class="max-w-sm rounded overflow-hidden shadow-lg">
+              <div class="flex justify-center items-center w-full h-1/3">
+                <Image src={uploadImage} height="50px" width="50px" alt="Image" />
+              </div>
+              <div class="px-6 py-4">
+                  <div class="font-bold text-xl mb-2">Upload Information</div>
+                  <p class="text-gray-700 text-base">
+                    Upload the required information and documents you need to
+                    get verified wherever needed
+                  </p>
+                </div>
+              </div>
+
+              <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                <div class="flex justify-center w-full h-1/3">
+                  <Image height="50px" width="50px" src={veriImage} alt="SImage" />
+                </div>
+                <div class="px-6 py-4">
+                  <div class="font-bold text-xl mb-2">Get Data Verified</div>
+                  <p class="text-gray-700 text-base">
+                    Get the data you submitted verified using otp. Once the data
+                    is verified, the D-Auth's system will initiate NFT
+                    generation.
+                  </p>
+                </div>
+              </div>
+
+              <div class="max-w-sm rounded overflow-hidden shadow-lg">
+                <div class="flex justify-center w-full h-1/3">
+                  <Image height= "50px" width="50px" src={nftImage} alt="Image" />
+                </div>
+                <div class="px-6 py-4">
+                  <div class="font-bold text-xl mb-2">Recieve your NFT</div>
+                  <p class="text-gray-700 text-base">
+                    After the verification is completed, user will recieve the NFT based signature for future KYC processing.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
       <div className="flex justify-center items-center">
         <a
           href="/upload"
@@ -48,7 +100,7 @@ export default function RouteName() {
             Get Started
           </span>
         </a>
+        </div>
       </div>
-    </div>
   );
 }

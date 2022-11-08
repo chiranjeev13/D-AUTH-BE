@@ -28,7 +28,7 @@ export default function RouteName() {
         "X-RapidAPI-Key": "c4aacdd6f5msh971693a8fd7c123p1dba77jsn01c3b4eb154c",
         "X-RapidAPI-Host": "d7-verify.p.rapidapi.com",
       },
-      data: `{"originator":"SignOTP","recipient":"+91${mobile}","content":"OTP verification code is: {}","expiry":"600","data_coding":"text"}`,
+      data: `{"originator":"SignOTP","recipient":"+91${mobile}","content":"OTP for Aadhaar verification is: {} (Valid for 10 mins).","expiry":"600","data_coding":"text"}`,
     };
 
     // posting the request
@@ -179,16 +179,16 @@ export default function RouteName() {
                   Submit
                 </Button>
 
-                {showStatus &&
-                  (otpStatus === "APPROVED" ? (
-                    <div className="pt-4 text-green-500">
-                      OTP verified successfully!
-                    </div>
-                  ) : (
-                    <div className="pt-4 text-red-500">
-                      OTP verification failed!
-                    </div>
-                  ))}
+                {showStatus && otpStatus === "APPROVED" && (
+                  <div className="pt-4 text-green-500">
+                    OTP verified successfully!
+                  </div>
+                )}
+                {showStatus && otpStatus === "DECLINED" && (
+                  <div className="pt-4 text-red-500">
+                    OTP verification failed!
+                  </div>
+                )}
               </div>
             )}
           </form>
@@ -203,6 +203,8 @@ export default function RouteName() {
               onClick={() => {
                 console.log("Details submitted");
                 // call backend
+                // after waiting for the backend to complete
+                window.location = "/";
               }}
             >
               Confirm

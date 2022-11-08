@@ -14,7 +14,7 @@ const options = {
     "X-RapidAPI-Key": "c4aacdd6f5msh971693a8fd7c123p1dba77jsn01c3b4eb154c",
     "X-RapidAPI-Host": "d7-verify.p.rapidapi.com",
   },
-  data: '{"originator":"SignOTP","recipient":"+919082871739","content":"OTP verification code is: {}","expiry":"600","data_coding":"text"}',
+  data: '{"originator":"SignOTP","recipient":"+919082871739","content":" OTP  for Aadhaar verification *Dont Share this with anyone* "  is: {}","expiry":"600","data_coding":"text"}',
 };
 
 axios

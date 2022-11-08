@@ -9,6 +9,7 @@ export default function RouteName() {
     <div className="bg-white text-blue-500 min-h-screen">
       <Header />
       <div className="p-4">
+        <div className="p-5"><b>Once authenticated, always aquainted...</b></div>
         <div className="flex flex-col md:flex-row justify-between gap-6 p-4">
           <div className="flex justify-end items-center">
             <Image
@@ -19,7 +20,7 @@ export default function RouteName() {
             />
           </div>
           <div className="flex items-center justify-start text-2xl">
-            <p>Get your KYC documents once and for all</p>
+            <p>Get your KYC documents Verified using our <b>Zero Knowledge based Blockchain Technology</b>  </p>
           </div>
         </div>
       </div>

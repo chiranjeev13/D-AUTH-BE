@@ -1,6 +1,5 @@
 import { ConnectButton } from "web3uikit"
 
-
 export default function Header() {
   return (
     <div className="bg-gray-100 shadow-lg">

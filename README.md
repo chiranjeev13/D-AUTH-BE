@@ -2,8 +2,10 @@
 
 Backend repo: https://github.com/chiranjeev13/D-AUTH-BE
 
-Home page:
-![image](https://user-images.githubusercontent.com/70687348/200307184-2fff6a4b-cc73-4b9b-8dcf-bc52e25c21ca.png)
+Home
+![WhatsApp Image 2022-11-08 at 3 30 32 PM](https://user-images.githubusercontent.com/70687348/200536094-c34918c5-6863-4b0b-bd53-bdc4fd928e6b.jpeg)
+ page:
+
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 

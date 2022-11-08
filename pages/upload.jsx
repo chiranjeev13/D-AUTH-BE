@@ -1,6 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import { useRouter } from "next/router";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../Common/Header";
 const axios = require("axios").default;
 import { abi, contractAddress } from "../constants";
@@ -28,7 +28,7 @@ export default function RouteName() {
         "X-RapidAPI-Key": "c4aacdd6f5msh971693a8fd7c123p1dba77jsn01c3b4eb154c",
         "X-RapidAPI-Host": "d7-verify.p.rapidapi.com",
       },
-      data: `{"originator":"SignOTP","recipient":"+91${mobile}","content":"OTP verification code is: {}","expiry":"600","data_coding":"text"}`,
+      data: `{"originator":"SignOTP","recipient":"+91${mobile}","content":"OTP for Aadhaar verification is: {} (Valid for 10 mins).","expiry":"600","data_coding":"text"}`,
     };
 
     // posting the request
@@ -68,14 +68,12 @@ export default function RouteName() {
       });
   }
 
-  const { Moralis, isWeb3Enabled, chainId: chainIdHex } = useMoralis()
-  const chainId=parseInt(chainIdHex);
+  const { Moralis, isWeb3Enabled, chainId: chainIdHex } = useMoralis();
+  const chainId = parseInt(chainIdHex);
   const DAUTHAddress =
     chainId in contractAddresses ? contractAddresses[chainId][0] : null;
 
   const { asPath } = useRouter();
-
-
 
   const {
     runContractFunction: mint,
@@ -105,7 +103,6 @@ export default function RouteName() {
       args: [],
     },
   });
-
 
   return (
     <div className="bg-white text-blue-500 min-h-screen">
@@ -182,16 +179,16 @@ export default function RouteName() {
                   Submit
                 </Button>
 
-                {showStatus &&
-                  (otpStatus === "APPROVED" ? (
-                    <div className="pt-4 text-green-500">
-                      OTP verified successfully!
-                    </div>
-                  ) : (
-                    <div className="pt-4 text-red-500">
-                      OTP verification failed!
-                    </div>
-                  ))}
+                {showStatus && otpStatus === "APPROVED" && (
+                  <div className="pt-4 text-green-500">
+                    OTP verified successfully!
+                  </div>
+                )}
+                {showStatus && otpStatus === "DECLINED" && (
+                  <div className="pt-4 text-red-500">
+                    OTP verification failed!
+                  </div>
+                )}
               </div>
             )}
           </form>

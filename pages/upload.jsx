@@ -29,7 +29,7 @@ axios
 export default function RouteName() {
   const [name, setName] = useState("");
   const [aadhar, setAadhar] = useState("");
-  const [number, setNumber] = useState();
+  const [mobile, setNumber] = useState();
   const [otpSent, setOtpSent] = useState(false);
   const [otp, setOtp] = useState("");
 
@@ -49,8 +49,10 @@ export default function RouteName() {
 
   async function handleSubmit() {
     // setting the data
-    const data = `{"originator":"SignOTP","recipient":"+91${number}","content":"OTP verification code is: {}","expiry":"600","data_coding":"text"}`;
+    const data = `{"originator":"SignOTP","recipient":"+91${mobile}","content":"OTP verification code is: {}","expiry":"600","data_coding":"text"}`;
     options[data] = data;
+
+    console.log(data);
 
     // posting the request
     axios
@@ -95,7 +97,7 @@ export default function RouteName() {
 
             <TextField
               label="Number"
-              value={number}
+              value={mobile}
               type="tel"
               fullWidth
               onChange={(e) => setNumber(e.target.value)}

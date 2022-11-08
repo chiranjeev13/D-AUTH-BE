@@ -1,4 +1,4 @@
-import { ConnectButton } from "web3uikit";
+// import { ConnectButton } from "web3uikit";
 
 export default function Header() {
   return (
@@ -13,7 +13,8 @@ export default function Header() {
             About Us
           </a>
           <a className="hover:underline transition duration-200">
-            <ConnectButton moralisAuth={false} />
+            {/* <ConnectButton moralisAuth={false} /> */}
+            Connect
           </a>
         </div>
       </div>

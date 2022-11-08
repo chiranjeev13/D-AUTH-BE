@@ -6,6 +6,7 @@ export default function RouteName() {
   return (
     <div className="bg-white text-blue-500 min-h-screen">
       <Header />
+      <div></div>
     </div>
   );
 }

@@ -13,7 +13,7 @@ export default function RouteName() {
   useEffect(() => {
     provider = new ethers.providers.Web3Provider(window.ethereum);
 
-    contractAddress = "0xD7DBE617371d7c56f0F3C64504F762D532E93D73";
+    contractAddress = "0xC7Eea2f49e5cbC5D2433DE2622c0E16074F190A8";
     ABI = contr.abi;
     const provider_contract = new ethers.Contract(
       contractAddress,
@@ -39,7 +39,14 @@ export default function RouteName() {
   const verify = async () => {
     const signer = provider.getSigner();
     const newsignedContract = new ethers.Contract(contractAddress, ABI, signer);
-    await newsignedContract.Verifier(address);
+    try {
+      const values = await newsignedContract.Verifier(address);
+      const tkid = parseInt(values[0]._hex, 16).toString();
+      const bolval = values[1].toString();
+      alert("Token Id : "+tkid+ "\n"+bolval);
+    } catch (e) {
+      alert(e);
+    }
   };
 
   return (
@@ -61,7 +68,8 @@ export default function RouteName() {
               variant="contained"
               fullWidth
               onClick={async () => {
-                console.log(await verify());
+                await verify();
+                console.log(address);
                 console.log("success");
               }}
               color="secondary"

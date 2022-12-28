@@ -17,7 +17,7 @@ contract NFT_MINT is ERC721, Ownable {
 
     string public baseUri;
     uint256 chk;
-    uint200 h;
+    uint200 po;
     uint cp = 0;
     uint256 public tokenId;
 
@@ -25,7 +25,7 @@ contract NFT_MINT is ERC721, Ownable {
         baseUri = "https://gateway.pinata.cloud/ipfs/QmPWzKZKYsxnXvYQX2PfN6ab7Y4qAcdNYJZUA4aCo19L3S/";
         tokenId = 0;
         totalSupply = 0;
-        chk = 1;
+        chk = 0;
     }
 
     function updateBaseURI(string memory newbaseUri) private onlyOwner {
@@ -46,14 +46,15 @@ contract NFT_MINT is ERC721, Ownable {
             curTotalSupply + _numTokens <= MAX_TOKENS,
             "Exceeds total supply."
         );
-        tokenId++;
+        tokenId=tokenId+1;
         _safeMint(msg.sender, tokenId);
-        verified[msg.sender] = true;
+        
         _numTokens++;
         mintedPerWallet[msg.sender] += _numTokens;
 
         totalSupply++;
         cp = 1;
+        verified[msg.sender] = true;
         return tokenId;
     }
 
@@ -74,19 +75,19 @@ contract NFT_MINT is ERC721, Ownable {
         return verified[msg.sender];
     }
 
-    function Verifier(address nft_owner) public view returns (uint256, bool) {
+    function Verifier(address nft_owner) public view returns (uint256,bool) {
         address temp;
-        uint256 tknId=0;
+        uint256 tknId = 0;
         uint p = 0;
-        while (p <= totalSupply && tknId <= totalSupply) {
+        while (p <= totalSupply && tknId < totalSupply) {
             tknId++;
             temp = ownerOf(tknId);
             if (nft_owner == temp) {
-                return (tknId, true);
+                return (tknId,true);
             }
             p++;
         }
-        return (0, false);
+        return (0,false);
     }
 
     function getTokenId() public view returns (uint256) {

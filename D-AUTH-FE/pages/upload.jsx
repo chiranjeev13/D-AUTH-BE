@@ -7,10 +7,6 @@ import { useMoralis, useWeb3Contract } from "react-moralis";
 import contr from "../../artifacts/contracts/NFT-MINT.sol/NFT_MINT.json";
 import { ethers } from "ethers";
 import Image from "next/image";
-import React from "react";
-import Popup from "reactjs-popup";
-import img from "../../NFT_metadata/images/DAU.gif";
-//import Popup from "react-animated-popup";
 
 export default function RouteName() {
   const [name, setName] = useState("");
@@ -22,6 +18,8 @@ export default function RouteName() {
   const [otpStatus, setOtpStatus] = useState("");
   const [error, setError] = useState("");
   const [showStatus, setShowStatus] = useState(false);
+  const [showImage, setShowImage] = useState(false);
+  const [imageURL, setImageURL] = useState("");
 
   async function handleSubmit() {
     // setting options for sending otp
@@ -79,7 +77,7 @@ export default function RouteName() {
   useEffect(() => {
     provider = new ethers.providers.Web3Provider(window.ethereum);
 
-    contractAddress = "0x3cd89e59DE6ACE1125f5baC5db7BC3CF0BEAb40b";
+    contractAddress = "0xC7Eea2f49e5cbC5D2433DE2622c0E16074F190A8";
     ABI = contr.abi;
     const provider_contract = new ethers.Contract(
       contractAddress,
@@ -133,13 +131,17 @@ export default function RouteName() {
     // const testmint = await newsignedContract.mint();
     //console.log(testmint.data);
   };
+  const displayImg = async (imgUrl) => {
+    try {
+      <Image src={imgUrl} alt="" width={150} height={150} />;
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <div className="bg-white text-blue-500 min-h-screen">
-        
-     
       <Header />
-      
       <div className="p-4">
         <p className="text-3xl font-bold">Verify Aadhar</p>
         <p>Get your aadhar verified and generate a NFT token</p>
@@ -151,12 +153,14 @@ export default function RouteName() {
               fullWidth
               onChange={(e) => setName(e.target.value)}
             ></TextField>
+
             <TextField
               label="Aadhaar Number"
               value={aadhar}
               fullWidth
               onChange={(e) => setAadhar(e.target.value)}
             ></TextField>
+
             <TextField
               InputLabelProps={{ shrink: true }}
               label="DOB"
@@ -171,6 +175,7 @@ export default function RouteName() {
               fullWidth
               onChange={(e) => setNumber(e.target.value)}
             ></TextField>
+
             <Button
               variant="contained"
               fullWidth
@@ -179,23 +184,29 @@ export default function RouteName() {
               onClick={async () => {
                 await mint();
                 console.log(imgURL);
-                await displayImg(imgURL);
                 setOtpSent(true);
                 handleSubmit();
-              }
-            }
-              
-            
+
+                setImageURL(imageURL);
+                setShowImage(true);
+              }}
               className="text-purple-800 hover:text-white md:w-auto w-full mt-4"
             >
-              
               Send OTP
             </Button>
 
+            {showImage && (
+              <div className="flex items-center justify-center">
+                <Image src={imageURL} alt="" width={150} height={150} />
+              </div>
+            )}
+
             {otpSent && <button>Resend OTP</button>}
+
             {error.length !== 0 && (
               <p className="text-red-500 text-lg">{error}</p>
             )}
+
             {otpSent && (
               <div className="pt-6 flex flex-col justify-center items-center w-full md:w-auto">
                 <TextField
@@ -232,8 +243,7 @@ export default function RouteName() {
               </div>
             )}
           </form>
-          </div>
-
+        </div>
         {showStatus && otpStatus === "APPROVED" && (
           <div className="flex justify-center">
             <Button
@@ -243,8 +253,7 @@ export default function RouteName() {
               className="text-purple-800 hover:text-white w-full md:w-2/5"
               onClick={async () => {
                 console.log("Details submitted");
-                await mint();
-                console.log(imgURL);
+                // call backend
               }}
             >
               Confirm

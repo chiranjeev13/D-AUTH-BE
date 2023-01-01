@@ -18,6 +18,8 @@ export default function RouteName() {
   const [otpStatus, setOtpStatus] = useState("");
   const [error, setError] = useState("");
   const [showStatus, setShowStatus] = useState(false);
+  const [showImage, setShowImage] = useState(false);
+  const [imageURL, setImageURL] = useState("");
 
   async function handleSubmit() {
     // setting options for sending otp
@@ -185,10 +187,12 @@ export default function RouteName() {
               disabled={otpSent}
               onClick={async () => {
                 await mint();
-                console.log(imgURL);
-                await displayImg(imgURL);
+                console.log(imgURL);                
                 setOtpSent(true);
                 handleSubmit();
+
+                setImageURL(imageURL);
+                setShowImage(true);
               }
             }
               
@@ -198,6 +202,12 @@ export default function RouteName() {
               Send OTP
 
             </Button>
+
+            {showImage && (
+              <div className="flex items-center justify-center">
+                <Image src={imageURL} alt="" width={150} height={150} />
+              </div>
+            )}
 
             {otpSent && <button>Resend OTP</button>}
 

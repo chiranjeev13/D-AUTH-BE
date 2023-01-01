@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Header from "../Common/Header";
 import { ethers } from "ethers";
 import contr from "../../artifacts/contracts/NFT-MINT.sol/NFT_MINT.json";
+import img from "../../NFT_metadata/images/tes.jpg";
 
 export default function RouteName() {
   const [address, setAddress] = useState("");
@@ -13,7 +14,7 @@ export default function RouteName() {
   useEffect(() => {
     provider = new ethers.providers.Web3Provider(window.ethereum);
 
-    contractAddress = "0xC7Eea2f49e5cbC5D2433DE2622c0E16074F190A8";
+    contractAddress = "0x3cd89e59DE6ACE1125f5baC5db7BC3CF0BEAb40b";
     ABI = contr.abi;
     const provider_contract = new ethers.Contract(
       contractAddress,
@@ -43,7 +44,7 @@ export default function RouteName() {
       const values = await newsignedContract.Verifier(address);
       const tkid = parseInt(values[0]._hex, 16).toString();
       const bolval = values[1].toString();
-      alert("Token Id : "+tkid+ "\n"+bolval);
+      alert("Token Id : " + tkid + "\n" + bolval);
     } catch (e) {
       alert(e);
     }
@@ -53,6 +54,7 @@ export default function RouteName() {
     <div className="bg-white text-blue-500 min-h-screen">
       <Header />
       <div className="p-4">
+        <img src={img} alt=""/>
         <p className="text-3xl font-bold">Verify</p>
         <p>Get your Aadhar verified</p>
         <div className="flex justify-center items-center pt-4">

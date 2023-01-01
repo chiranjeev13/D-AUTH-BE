@@ -1,5 +1,5 @@
 import { ConnectButton } from "web3uikit"
-
+import img from "../../NFT_metadata/images/tes.jpg"
 export default function Header() {
   return (
     <div className="bg-gray-100 shadow-lg">
@@ -9,6 +9,7 @@ export default function Header() {
           <a href="/verify" className="hover:underline transition duration-200">
             Verify
           </a>
+          
           <a href="/about" className="hover:underline transition duration-200">
             About Us
           </a>

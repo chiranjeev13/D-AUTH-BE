@@ -22,8 +22,6 @@ export default function RouteName() {
   const [otpStatus, setOtpStatus] = useState("");
   const [error, setError] = useState("");
   const [showStatus, setShowStatus] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [visible, setVisible] = useState(false);
 
   async function handleSubmit() {
     // setting options for sending otp
@@ -179,18 +177,20 @@ export default function RouteName() {
               color="secondary"
               disabled={otpSent}
               onClick={async () => {
+                await mint();
+                console.log(imgURL);
+                await displayImg(imgURL);
                 setOtpSent(true);
                 handleSubmit();
-              }}
+              }
+            }
+              
+            
               className="text-purple-800 hover:text-white md:w-auto w-full mt-4"
             >
               
               Send OTP
             </Button>
-            <img src="../../NFT_metadata/images/tes.jpg" alt="" />
-            <div>
-              <iframe src={imgURL} frameborder="50"></iframe>
-            </div>
 
             {otpSent && <button>Resend OTP</button>}
             {error.length !== 0 && (

@@ -14,7 +14,7 @@ export default function RouteName() {
   useEffect(() => {
     provider = new ethers.providers.Web3Provider(window.ethereum);
 
-    contractAddress = "0xFc09477C27CCe68576aD37a0249A0A46cFE3fF1f";
+    contractAddress = "0xB925055BC84215b6a1B54dF37841D6656A055C8b";
     ABI = contr.abi;
     const provider_contract = new ethers.Contract(
       contractAddress,

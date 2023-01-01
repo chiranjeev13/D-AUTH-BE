@@ -7,6 +7,8 @@ import { useMoralis, useWeb3Contract } from "react-moralis";
 import contr from "../../artifacts/contracts/NFT-MINT.sol/NFT_MINT.json";
 import { ethers } from "ethers";
 import Image from "next/image";
+import React from "react";
+import Popup from "reactjs-popup";
 
 export default function RouteName() {
   const [name, setName] = useState("");
@@ -20,6 +22,8 @@ export default function RouteName() {
   const [showStatus, setShowStatus] = useState(false);
   const [showImage, setShowImage] = useState(false);
   const [imageURL, setImageURL] = useState("");
+  const [URI, setURI] = useState("");
+  const [visible, setVisible] = useState(false);
 
   async function handleSubmit() {
     // setting options for sending otp
@@ -29,8 +33,8 @@ export default function RouteName() {
       headers: {
         "content-type": "application/json",
         Token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiYWM4NGE4YTQtZWEwOS00YmJmLWFkYjItY2RlNDRmMzJkYzAyIn0.OvD-dwbvd1EBEfKtEm9ZEXv83I0MVk53-5xsw-UalvY",
-        "X-RapidAPI-Key": "c4aacdd6f5msh971693a8fd7c123p1dba77jsn01c3b4eb154c",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiOTBlZWI2YjktMDhkMy00NjExLWI5MzAtMGFjN2M0Yjc4YTA5In0.7KNON_a4ubO3BbzBJT-vDPznCT5az-KM9u_ksfxwfuI",
+        "X-RapidAPI-Key": "e1588b364fmsh4e12bef5704e29ap107f8djsne8d9cc254653",
         "X-RapidAPI-Host": "d7-verify.p.rapidapi.com",
       },
       data: `{"originator":"SignOTP","recipient":"+91${mobile}","content":"OTP verification code is: {}","expiry":"600","data_coding":"text"}`,
@@ -55,8 +59,8 @@ export default function RouteName() {
       headers: {
         "content-type": "application/json",
         Token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiYWM4NGE4YTQtZWEwOS00YmJmLWFkYjItY2RlNDRmMzJkYzAyIn0.OvD-dwbvd1EBEfKtEm9ZEXv83I0MVk53-5xsw-UalvY",
-        "X-RapidAPI-Key": "c4aacdd6f5msh971693a8fd7c123p1dba77jsn01c3b4eb154c",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiOTBlZWI2YjktMDhkMy00NjExLWI5MzAtMGFjN2M0Yjc4YTA5In0.7KNON_a4ubO3BbzBJT-vDPznCT5az-KM9u_ksfxwfuI",
+        "X-RapidAPI-Key": "e1588b364fmsh4e12bef5704e29ap107f8djsne8d9cc254653",
         "X-RapidAPI-Host": "d7-verify.p.rapidapi.com",
       },
       data: `{"otp_id":"${otpID}","otp_code":"${otp}"}`,
@@ -77,7 +81,7 @@ export default function RouteName() {
   useEffect(() => {
     provider = new ethers.providers.Web3Provider(window.ethereum);
 
-    contractAddress = "0xFc09477C27CCe68576aD37a0249A0A46cFE3fF1f";
+    contractAddress = "0xB925055BC84215b6a1B54dF37841D6656A055C8b";
     ABI = contr.abi;
     const provider_contract = new ethers.Contract(
       contractAddress,
@@ -99,7 +103,7 @@ export default function RouteName() {
     signedContract = newsignedContract;
     console.log("connected");
   };
-  var imgURL;
+  var imgURL, uri;
   const mint = async () => {
     const signer = provider.getSigner();
     const newsignedContract = new ethers.Contract(contractAddress, ABI, signer);
@@ -111,7 +115,8 @@ export default function RouteName() {
       const tokenId = getTokenId._hex;
       var tId = parseInt(tokenId, 16);
 
-      var uri = await newsignedContract.tokenURI(tId);
+      uri = await newsignedContract.tokenURI(tId);
+      setURI(uri);
       console.log(uri);
       imgURL = await getImage();
     } catch (error) {
@@ -182,25 +187,13 @@ export default function RouteName() {
               color="secondary"
               disabled={otpSent}
               onClick={async () => {
-                await mint();
-                console.log(imgURL);
                 setOtpSent(true);
                 handleSubmit();
-
-                setImageURL(imgURL);
-                setShowImage(true);
               }}
               className="text-purple-800 hover:text-white md:w-auto w-full mt-4"
             >
               Send OTP
             </Button>
-
-            {showImage && (
-              <div className="flex items-center justify-center">
-                <p>{imageURL}</p>
-                <Image src={imageURL} alt="" width={150} height={150} />
-              </div>
-            )}
 
             {otpSent && <button>Resend OTP</button>}
 
@@ -253,12 +246,37 @@ export default function RouteName() {
               fullWidth
               className="text-purple-800 hover:text-white w-full md:w-2/5"
               onClick={async () => {
+                await mint();
+                console.log(imgURL);
+                if (imgURL && imgURL.length != 0) {
+                  setImageURL(imgURL);
+                  setShowImage(true);
+                }
                 console.log("Details submitted");
-                // call backend
               }}
             >
               Confirm
             </Button>
+            {showImage && (
+              <div className="flex flex-col gap-2 items-center justify-center">
+                <Popup enum="top left"
+                  trigger={(open) => (
+                    <button className="button">See NFT?</button>
+                  )}
+                  repositionOnResize
+                  closeOnDocumentClick
+                >
+                  <div >
+                    <p>Your NFT</p>
+
+                    <Image src={imageURL} alt="" width={350} height={350} />
+
+                    <p>Your MetaData</p>
+                    <p>{URI}</p>
+                  </div>
+                </Popup>
+              </div>
+            )}
           </div>
         )}
       </div>

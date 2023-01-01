@@ -6,8 +6,7 @@ const nextConfig = {
         protocol: "https",
         hostname: "gateway.pinata.cloud",
         port: "",
-        pathname:
-          "/ipfs/QmU7mcwuiPdtHVSHZdcHhQKAtbMNnVLK49D8zJiVF7v6Ax/DAU.gif",
+        pathname: "/ipfs/**/DAU.gif",
       },
     ],
   },

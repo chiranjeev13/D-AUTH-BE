@@ -2,6 +2,7 @@
   "name": "D-AUTH-FE",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -14,6 +15,7 @@
     "@mui/material": "^5.10.13",
     "moralis": "^2.7.1",
     "moralis-v1": "^1.12.0",
+    "next": "^13.1.1",
     "react": "^18.2.0",
     "react-animated-popup": "^0.1.8",
     "react-dom": "^18.2.0",
@@ -24,7 +26,7 @@
   "devDependencies": {
     "autoprefixer": "^10.4.4",
     "eslint": "8.13.0",
-    "eslint-config-next": "12.1.5",
+    "eslint-config-next": "^13.1.1",
     "postcss": "^8.4.12",
     "tailwindcss": "^3.0.24"
   }

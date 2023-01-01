@@ -77,7 +77,7 @@ export default function RouteName() {
   useEffect(() => {
     provider = new ethers.providers.Web3Provider(window.ethereum);
 
-    contractAddress = "0xC7Eea2f49e5cbC5D2433DE2622c0E16074F190A8";
+    contractAddress = "0x8C751CfEfea372a942032912a2c1b7A789BE9FA7";
     ABI = contr.abi;
     const provider_contract = new ethers.Contract(
       contractAddress,
@@ -187,7 +187,7 @@ export default function RouteName() {
                 setOtpSent(true);
                 handleSubmit();
 
-                setImageURL(imageURL);
+                setImageURL(imgURL);
                 setShowImage(true);
               }}
               className="text-purple-800 hover:text-white md:w-auto w-full mt-4"
@@ -197,7 +197,7 @@ export default function RouteName() {
 
             {showImage && (
               <div className="flex items-center justify-center">
-                <Image src={imageURL} alt="" width={150} height={150} />
+                <img src={imgURL} alt="" width={150} height={150} />
               </div>
             )}
 

@@ -15,7 +15,7 @@ export default function RouteName() {
         </p>
       </div>
       <div className="text-black flex gap-4">
-        <a className="hover:underline" href="github.com/chiranjeev13">
+        <a className="hover:underline" href="https://github.com/chiranjeev13">
           GITHUB
         </a>
         <a

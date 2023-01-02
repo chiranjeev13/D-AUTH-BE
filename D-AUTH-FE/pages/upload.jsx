@@ -33,7 +33,7 @@ export default function RouteName() {
       headers: {
         "content-type": "application/json",
         Token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiOTBlZWI2YjktMDhkMy00NjExLWI5MzAtMGFjN2M0Yjc4YTA5In0.7KNON_a4ubO3BbzBJT-vDPznCT5az-KM9u_ksfxwfuI",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiNTY1NzFjNzItYzcyZS00ZjhiLTlkNmQtNzhmMGUwYjNjYTNiIn0.Gw8IwhdkBpZ7swqSBoydKa77ohvBTWUfjKe8thdQSGs",
         "X-RapidAPI-Key": "e1588b364fmsh4e12bef5704e29ap107f8djsne8d9cc254653",
         "X-RapidAPI-Host": "d7-verify.p.rapidapi.com",
       },
@@ -59,7 +59,7 @@ export default function RouteName() {
       headers: {
         "content-type": "application/json",
         Token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiOTBlZWI2YjktMDhkMy00NjExLWI5MzAtMGFjN2M0Yjc4YTA5In0.7KNON_a4ubO3BbzBJT-vDPznCT5az-KM9u_ksfxwfuI",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiNTY1NzFjNzItYzcyZS00ZjhiLTlkNmQtNzhmMGUwYjNjYTNiIn0.Gw8IwhdkBpZ7swqSBoydKa77ohvBTWUfjKe8thdQSGs",
         "X-RapidAPI-Key": "e1588b364fmsh4e12bef5704e29ap107f8djsne8d9cc254653",
         "X-RapidAPI-Host": "d7-verify.p.rapidapi.com",
       },
@@ -81,7 +81,7 @@ export default function RouteName() {
   useEffect(() => {
     provider = new ethers.providers.Web3Provider(window.ethereum);
 
-    contractAddress = "0xB925055BC84215b6a1B54dF37841D6656A055C8b";
+    contractAddress = "0x1387938C0761C817d2474ae5e0F8BC243C2B4f17";
     ABI = contr.abi;
     const provider_contract = new ethers.Contract(
       contractAddress,
@@ -120,7 +120,7 @@ export default function RouteName() {
       console.log(uri);
       imgURL = await getImage();
     } catch (error) {
-      alert(error);
+      alert("Address is already Verified");
     }
 
     async function getImage() {
@@ -239,7 +239,7 @@ export default function RouteName() {
           </form>
         </div>
         {showStatus && otpStatus === "APPROVED" && (
-          <div className="flex justify-center">
+          <div className="flex flex-col gap-2 items-center justify-center">
             <Button
               variant="contained"
               color="primary"
@@ -258,27 +258,26 @@ export default function RouteName() {
               Confirm
             </Button>
             {showImage && (
-              <div className="flex flex-col gap-2 items-center justify-center">
-                <Popup enum="top left"
-                  trigger={(open) => (
-                    <button className="button">See NFT?</button>
-                  )}
-                  repositionOnResize
-                  closeOnDocumentClick
-                >
-                  <div >
-                    <p>Your NFT</p>
+              <div>
+                <div className="flex flex-col gap-2 items-center justify-center">
+                  <p>Your NFT</p>
 
-                    <Image src={imageURL} alt="" width={350} height={350} />
+                  <Image src={imageURL} alt="" width={350} height={350} />
 
-                    <p>Your MetaData</p>
-                    <p>{URI}</p>
-                  </div>
-                </Popup>
+                  <p>Your MetaData</p>
+                  <p>{URI}</p>
+                </div>
               </div>
             )}
           </div>
         )}
+      </div>
+      <div className="flex flex-col gap-2 items-center ">
+        <div className=" justify-center absolute bottom-2">
+          <a href="https://mumbai.polygonscan.com/address/0x1387938C0761C817d2474ae5e0F8BC243C2B4f17#code">
+            Deployed with ❤️ at Polygon Mumbai testnet Click to see the contract
+          </a>
+        </div>
       </div>
     </div>
   );

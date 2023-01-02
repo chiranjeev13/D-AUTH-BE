@@ -8,13 +8,17 @@ import img from "../../NFT_metadata/images/tes.jpg";
 
 export default function RouteName() {
   const [address, setAddress] = useState("");
+  const [tkid, settkid] = useState("");
+  const [bolval, setbolval] = useState("");
+  const [status, res] = useState("");
+
   const { asPath } = useRouter();
   let provider, contractAddress, ABI;
 
   useEffect(() => {
     provider = new ethers.providers.Web3Provider(window.ethereum);
 
-    contractAddress = "0xB925055BC84215b6a1B54dF37841D6656A055C8b";
+    contractAddress = "0x1387938C0761C817d2474ae5e0F8BC243C2B4f17";
     ABI = contr.abi;
     const provider_contract = new ethers.Contract(
       contractAddress,
@@ -40,13 +44,18 @@ export default function RouteName() {
   const verify = async () => {
     const signer = provider.getSigner();
     const newsignedContract = new ethers.Contract(contractAddress, ABI, signer);
+
+    const values = await newsignedContract.Verifier(address);
+
+    settkid(parseInt(values[0]._hex, 16).toString());
+    setbolval(values[1].toString());
+
     try {
-      const values = await newsignedContract.Verifier(address);
-      const tkid = parseInt(values[0]._hex, 16).toString();
-      const bolval = values[1].toString();
-      alert("Token Id : " + tkid + "\n" + bolval);
+      const uri = await newsignedContract.baseURI();
+
+      console.log(uri);
     } catch (e) {
-      alert(e);
+      console.log(e);
     }
   };
 
@@ -54,9 +63,9 @@ export default function RouteName() {
     <div className="bg-white text-blue-500 min-h-screen">
       <Header />
       <div className="p-4">
-        <img src={img} alt=""/>
-        <p className="text-3xl font-bold">Verify</p>
-        <p>Get your Aadhar verified</p>
+        <img src={img} alt="" />
+        <p className="text-3xl font-bold">Verify NFT</p>
+        <p>Check if you are verified or not!!</p>
         <div className="flex justify-center items-center pt-4">
           <form className="flex flex-col gap-3 justify-center items-center w-full md:w-2/3">
             <TextField
@@ -65,12 +74,12 @@ export default function RouteName() {
               onChange={(e) => setAddress(e.target.value)}
               fullWidth
             ></TextField>
-
             <Button
               variant="contained"
               fullWidth
               onClick={async () => {
                 await verify();
+
                 console.log(address);
                 console.log("success");
               }}
@@ -79,7 +88,24 @@ export default function RouteName() {
             >
               Verify
             </Button>
+            <p>Verification status : {bolval}</p>
+            Token Id : {tkid}
           </form>
+          {bolval && (
+            <div className="flex flex-col gap-2 items-center justify-center">
+              <div>
+                <p>Your MetaData</p>
+                {/* <p>{URI}</p> */}
+              </div>
+            </div>
+          )}
+          <div className="flex flex-col gap-2 items-center ">
+        <div className=" justify-center absolute bottom-2">
+          <a href="https://mumbai.polygonscan.com/address/0x1387938C0761C817d2474ae5e0F8BC243C2B4f17#code">
+            Deployed with ❤️ at Polygon Mumbai testnet Click to see the contract
+          </a>
+        </div>
+      </div>
         </div>
       </div>
     </div>

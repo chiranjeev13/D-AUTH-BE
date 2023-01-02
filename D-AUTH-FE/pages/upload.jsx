@@ -33,7 +33,7 @@ export default function RouteName() {
       headers: {
         "content-type": "application/json",
         Token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiNTY1NzFjNzItYzcyZS00ZjhiLTlkNmQtNzhmMGUwYjNjYTNiIn0.Gw8IwhdkBpZ7swqSBoydKa77ohvBTWUfjKe8thdQSGs",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiYmM1MzZmYjYtMzg1ZC00YWZiLTkyMjctNDUxOWU1MjhlOGJjIn0.i5uKmf896BqgaSjZxh0aCFqLI0MRZnW_MjyuOAZ0PCI",
         "X-RapidAPI-Key": "e1588b364fmsh4e12bef5704e29ap107f8djsne8d9cc254653",
         "X-RapidAPI-Host": "d7-verify.p.rapidapi.com",
       },
@@ -59,7 +59,7 @@ export default function RouteName() {
       headers: {
         "content-type": "application/json",
         Token:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiNTY1NzFjNzItYzcyZS00ZjhiLTlkNmQtNzhmMGUwYjNjYTNiIn0.Gw8IwhdkBpZ7swqSBoydKa77ohvBTWUfjKe8thdQSGs",
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJhdXRoLWJhY2tlbmQ6YXBwIiwic3ViIjoiYmM1MzZmYjYtMzg1ZC00YWZiLTkyMjctNDUxOWU1MjhlOGJjIn0.i5uKmf896BqgaSjZxh0aCFqLI0MRZnW_MjyuOAZ0PCI",
         "X-RapidAPI-Key": "e1588b364fmsh4e12bef5704e29ap107f8djsne8d9cc254653",
         "X-RapidAPI-Host": "d7-verify.p.rapidapi.com",
       },

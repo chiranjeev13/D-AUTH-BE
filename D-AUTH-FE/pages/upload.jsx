@@ -79,7 +79,11 @@ export default function RouteName() {
   let provider, contractAddress, ABI;
 
   useEffect(() => {
-    provider = new ethers.providers.Web3Provider(window.ethereum);
+    try {
+      provider = new ethers.providers.Web3Provider(window.ethereum);
+    } catch (e) {
+      alert("Please Install A Wallet First!!");
+    }
 
     contractAddress = "0x1387938C0761C817d2474ae5e0F8BC243C2B4f17";
     ABI = contr.abi;
@@ -145,7 +149,7 @@ export default function RouteName() {
   };
 
   return (
-    <div className="bg-white text-blue-500 min-h-screen">
+    <div className="bg-white text-blue-500 min-h-screen relative">
       <Header />
       <div className="p-4">
         <p className="text-3xl font-bold">Verify Aadhar</p>
@@ -257,23 +261,22 @@ export default function RouteName() {
             >
               Confirm
             </Button>
-            {showImage && (
-              <div>
-                <div className="flex flex-col gap-2 items-center justify-center">
-                  <p>Your NFT</p>
-
-                  <Image src={imageURL} alt="" width={350} height={350} />
-
-                  <p>Your MetaData</p>
-                  <p>{URI}</p>
-                </div>
-              </div>
-            )}
           </div>
         )}
       </div>
+      {showImage && (
+        <div>
+          <div className="flex flex-col gap-2 items-center justify-center mb-12">
+            <p>Your NFT</p>
+
+            <img src={imageURL} alt="" width={350} height={350} />
+
+            <a href={URI}>Your MetaData click to see...</a>
+          </div>
+        </div>
+      )}
       <div className="flex flex-col gap-2 items-center ">
-        <div className=" justify-center absolute bottom-2">
+        <div className="absolute bottom-2">
           <a href="https://mumbai.polygonscan.com/address/0x1387938C0761C817d2474ae5e0F8BC243C2B4f17#code">
             Deployed with ❤️ at Polygon Mumbai testnet Click to see the contract
           </a>

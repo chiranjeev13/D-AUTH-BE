@@ -8,11 +8,22 @@ export default function RouteName() {
       <Header />
       <div>
         <h5>Hi I am Chiranjeev Mishra,an aspiring Blockchain Developer</h5>
-        <p>This project aims for creating a web3 App which authenticates your web2 financial details like your AADHAR,PAN etc details then mint you an NFT after verification.</p>
+        <p>
+          This project aims for creating a web3 App which authenticates your
+          web2 financial details like your AADHAR,PAN etc details then mint you
+          an NFT after verification.
+        </p>
       </div>
-      <div>
-        <a href="github.com/chiranjeev13">GITHUB</a>
-        <a href="https://www.linkedin.com/in/chiranjeev-mishra-8b8008205/"> LINKEDIN</a>
+      <div className="text-black flex gap-4">
+        <a className="hover:underline" href="github.com/chiranjeev13">
+          GITHUB
+        </a>
+        <a
+          className="hover:underline"
+          href="https://www.linkedin.com/in/chiranjeev-mishra-8b8008205/"
+        >
+          LINKEDIN
+        </a>
       </div>
     </div>
   );

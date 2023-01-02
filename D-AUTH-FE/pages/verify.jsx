@@ -91,21 +91,14 @@ export default function RouteName() {
             <p>Verification status : {bolval}</p>
             Token Id : {tkid}
           </form>
-          {bolval && (
-            <div className="flex flex-col gap-2 items-center justify-center">
-              <div>
-                <p>Your MetaData</p>
-                {/* <p>{URI}</p> */}
-              </div>
-            </div>
-          )}
           <div className="flex flex-col gap-2 items-center ">
-        <div className=" justify-center absolute bottom-2">
-          <a href="https://mumbai.polygonscan.com/address/0x1387938C0761C817d2474ae5e0F8BC243C2B4f17#code">
-            Deployed with ❤️ at Polygon Mumbai testnet Click to see the contract
-          </a>
-        </div>
-      </div>
+            <div className=" justify-center absolute bottom-2">
+              <a href="https://mumbai.polygonscan.com/address/0x1387938C0761C817d2474ae5e0F8BC243C2B4f17#code">
+                Deployed with ❤️ at Polygon Mumbai testnet Click to see the
+                contract
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>

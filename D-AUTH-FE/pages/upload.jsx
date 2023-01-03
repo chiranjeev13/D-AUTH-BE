@@ -155,7 +155,7 @@ export default function RouteName() {
         <p className="text-3xl font-bold">Verify Aadhar</p>
         <p>Get your aadhar verified and generate a NFT token</p>
         <p>Please use Mumbai Testnet network</p>
-        <a className="hover:underline" href="https://mumbaifaucet.com">Mumbai Testnet Faucet</a>
+        <a className="hover:underline" href="https://mumbaifaucet.com">Mumbai Testnet Faucet URL</a>
         <div className="flex justify-center items-center pt-4">
           <form className="flex flex-col gap-3 justify-center items-center w-full md:w-2/3">
             <TextField

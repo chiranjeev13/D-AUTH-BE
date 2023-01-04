@@ -82,7 +82,7 @@ export default function RouteName() {
     try {
       provider = new ethers.providers.Web3Provider(window.ethereum);
     } catch (e) {
-      alert("Please Install A Wallet First!!");
+      alert("Please Install A Wallet First!! Otherwise the website wont work as required");
     }
 
     contractAddress = "0x1387938C0761C817d2474ae5e0F8BC243C2B4f17";

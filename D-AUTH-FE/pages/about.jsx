@@ -4,7 +4,7 @@ import Header from "../Common/Header";
 export default function RouteName() {
   const { asPath } = useRouter();
   return (
-    <div className="bg-white text-blue-500 min-h-screen">
+    <div className="bg-white text-blue-500 min-h-screen ">
       <Header />
       <div>
         <h5>Hi I am Chiranjeev Mishra,an aspiring Blockchain Developer</h5>
@@ -14,7 +14,8 @@ export default function RouteName() {
           an NFT after verification.
         </p>
       </div>
-      <div className="text-black flex gap-4">
+      <div className="text-black flex gap-2">
+        <p>Connect with me at</p>
         <a className="hover:underline" href="https://github.com/chiranjeev13">
           GITHUB
         </a>

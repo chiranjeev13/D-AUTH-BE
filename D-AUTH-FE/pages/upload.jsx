@@ -24,6 +24,7 @@ export default function RouteName() {
   const [imageURL, setImageURL] = useState("");
   const [URI, setURI] = useState("");
   const [visible, setVisible] = useState(false);
+  const [OpenSea, setOpenSea] = useState(false);
 
   async function handleSubmit() {
     // setting options for sending otp
@@ -77,12 +78,15 @@ export default function RouteName() {
       });
   }
   let provider, contractAddress, ABI;
+  var tId;
 
   useEffect(() => {
     try {
       provider = new ethers.providers.Web3Provider(window.ethereum);
     } catch (e) {
-      alert("Please Install A Wallet First!! Otherwise the website wont work as required");
+      alert(
+        "Please Install A Wallet First!! Otherwise the website wont work as required"
+      );
     }
 
     contractAddress = "0x1387938C0761C817d2474ae5e0F8BC243C2B4f17";
@@ -117,7 +121,7 @@ export default function RouteName() {
 
       const getTokenId = await newsignedContract.getTokenId();
       const tokenId = getTokenId._hex;
-      var tId = parseInt(tokenId, 16);
+      tId = parseInt(tokenId, 16);
 
       uri = await newsignedContract.tokenURI(tId);
       setURI(uri);
@@ -154,8 +158,15 @@ export default function RouteName() {
       <div className="p-4">
         <p className="text-3xl font-bold">Verify Aadhar</p>
         <p>Get your aadhar verified and generate a NFT token</p>
-        <p>Please use Mumbai Testnet network</p>
-        <a className="hover:underline" href="https://mumbaifaucet.com">Mumbai Testnet Faucet URL</a>
+        <p className="text-red-500">
+          <span class="blink"> Please use Mumbai Testnet network</span>
+        </p>
+        <a
+          className=" text-red-500 hover:underline"
+          href="https://mumbaifaucet.com"
+        >
+          Mumbai Testnet Faucet URL
+        </a>
         <div className="flex justify-center items-center pt-4">
           <form className="flex flex-col gap-3 justify-center items-center w-full md:w-2/3">
             <TextField
@@ -180,7 +191,7 @@ export default function RouteName() {
             ></TextField>
 
             <TextField
-              label="Number"
+              label="Number (India only, no need of '+91')"
               value={mobile}
               type="tel"
               fullWidth
@@ -257,6 +268,7 @@ export default function RouteName() {
                 if (imgURL && imgURL.length != 0) {
                   setImageURL(imgURL);
                   setShowImage(true);
+                  setOpenSea(true);
                 }
                 console.log("Details submitted");
               }}
@@ -277,9 +289,23 @@ export default function RouteName() {
           </div>
         </div>
       )}
+      {OpenSea && (
+        <div>
+          <div className="flex flex-col gap-2 items-center justify-center mb-12">
+            <a
+              href={`https://testnets.opensea.io/assets/mumbai/${contractAddress}/${tId}`}
+            >
+              Check your NFT on OpenSea testnet
+            </a>
+          </div>
+        </div>
+      )}
       <div className="flex flex-col gap-2 items-center ">
         <div className="absolute bottom-2">
-          <a className="hover:underline" href="https://mumbai.polygonscan.com/address/0x1387938C0761C817d2474ae5e0F8BC243C2B4f17#code">
+          <a
+            className="hover:underline"
+            href="https://mumbai.polygonscan.com/address/0x1387938C0761C817d2474ae5e0F8BC243C2B4f17#code"
+          >
             Deployed with ❤️ at Polygon Mumbai testnet Click to see the contract
           </a>
         </div>

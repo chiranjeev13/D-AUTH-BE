@@ -99,7 +99,7 @@ export default function RouteName() {
         </div>
         <div className="flex flex-col gap-2 items-center ">
             <div className=" justify-center absolute bottom-2">
-              <a href="https://mumbai.polygonscan.com/address/0x1387938C0761C817d2474ae5e0F8BC243C2B4f17#code">
+              <a className="hover:underline" href="https://mumbai.polygonscan.com/address/0x1387938C0761C817d2474ae5e0F8BC243C2B4f17#code">
                 Deployed with ❤️ at Polygon Mumbai testnet Click to see the
                 contract
               </a>

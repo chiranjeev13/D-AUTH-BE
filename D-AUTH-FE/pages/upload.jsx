@@ -293,7 +293,7 @@ export default function RouteName() {
       {OpenSea && (
         <div>
           <div className="flex flex-col gap-2 items-center justify-center mb-12">
-            <a
+            <a className="hover:underline"
               href={`https://testnets.opensea.io/assets/mumbai/0x1387938C0761C817d2474ae5e0F8BC243C2B4f17/${tkid}`}
             >
               Check your NFT on OpenSea testnet

@@ -164,7 +164,9 @@ export default function RouteName() {
           </p>
           <div className="flex flex-col gap-2 items-left justify-right mb-12 border-2 border-red-500 p-2">
             <p className="text-red-500">
-              <p className="underline">Mumbai Testnet Config</p>
+              <p>
+                <span class="blink"> Mumbai Testnet Config:</span>
+              </p>
               RPC URL: https://rpc-mumbai.maticvigil.com
               <br />
               Chain ID: 80001

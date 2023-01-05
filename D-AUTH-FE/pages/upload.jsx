@@ -166,7 +166,7 @@ export default function RouteName() {
             <p className="text-red-500">
               RPC URL: https://rpc-mumbai.maticvigil.com
               <br />
-              Chain ID: 8000
+              Chain ID: 80001
               <br />
               <a
                 className=" text-red-500 hover:underline"

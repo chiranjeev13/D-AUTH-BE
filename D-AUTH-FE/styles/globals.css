@@ -27,6 +27,13 @@ a {
 .blink {
   animation: blink 1s infinite;
 }
+.content{
+  background-color: white;
+  width: 300px;
+  padding: 15px;
+  border: 1px solid red;
+  margin: 100px;
+  }
 
 @keyframes blink {
   0% {

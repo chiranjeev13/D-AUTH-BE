@@ -158,9 +158,21 @@ export default function RouteName() {
       <div className="p-4">
         <p className="text-3xl font-bold">Verify Aadhar</p>
         <p>Get your aadhar verified and generate a NFT token</p>
-        <p className="text-red-500">
-          <span class="blink"> Please use Mumbai Testnet network</span>
-        </p>
+        <div className="flex justify-between gap-2">
+          <p className="text-red-500">
+            <span class="blink"> Please use Mumbai Testnet network</span>
+          </p>
+          <div className="flex flex-col gap-2 items-left justify-right mb-12 border-2 border-red-500 p-2">
+            <p className="text-red-500">
+              {/* <span className="content"> */}
+              RPC URL: https://rpc-mumbai.maticvigil.com
+              <br />
+              Chain ID: 80001
+              {/* </span> */}
+            </p>
+          </div>
+        </div>
+
         <a
           className=" text-red-500 hover:underline"
           href="https://mumbaifaucet.com"
@@ -293,7 +305,8 @@ export default function RouteName() {
       {OpenSea && (
         <div>
           <div className="flex flex-col gap-2 items-center justify-center mb-12">
-            <a className="hover:underline"
+            <a
+              className="hover:underline"
               href={`https://testnets.opensea.io/assets/mumbai/0x1387938C0761C817d2474ae5e0F8BC243C2B4f17/${tkid}`}
             >
               Check your NFT on OpenSea testnet

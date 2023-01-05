@@ -164,21 +164,20 @@ export default function RouteName() {
           </p>
           <div className="flex flex-col gap-2 items-left justify-right mb-12 border-2 border-red-500 p-2">
             <p className="text-red-500">
-              {/* <span className="content"> */}
               RPC URL: https://rpc-mumbai.maticvigil.com
               <br />
-              Chain ID: 80001
-              {/* </span> */}
+              Chain ID: 8000
+              <br />
+              <a
+                className=" text-red-500 hover:underline"
+                href="https://mumbaifaucet.com"
+              >
+                Mumbai Testnet Faucet URL
+              </a>
             </p>
           </div>
         </div>
 
-        <a
-          className=" text-red-500 hover:underline"
-          href="https://mumbaifaucet.com"
-        >
-          Mumbai Testnet Faucet URL
-        </a>
         <div className="flex justify-center items-center pt-4">
           <form className="flex flex-col gap-3 justify-center items-center w-full md:w-2/3">
             <TextField

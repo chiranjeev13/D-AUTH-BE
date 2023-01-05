@@ -19,7 +19,9 @@ export default function RouteName() {
     try {
       provider = new ethers.providers.Web3Provider(window.ethereum);
     } catch (e) {
-      alert("Please Install A Wallet First!! Otherwise the website wont work as required");
+      alert(
+        "Please Install A Wallet First!! Otherwise the website wont work as required"
+      );
     }
 
     contractAddress = "0x1387938C0761C817d2474ae5e0F8BC243C2B4f17";
@@ -53,14 +55,6 @@ export default function RouteName() {
 
     settkid(parseInt(values[0]._hex, 16).toString());
     setbolval(values[1].toString());
-
-    try {
-      const uri = await newsignedContract.baseURI();
-
-      console.log(uri);
-    } catch (e) {
-      console.log(e);
-    }
   };
 
   return (
@@ -82,7 +76,11 @@ export default function RouteName() {
               variant="contained"
               fullWidth
               onClick={async () => {
-                await verify();
+                try {
+                  await verify();
+                } catch (error) {
+                  alert("WRONG ADDRESS ENTERED!!");
+                }
 
                 console.log(address);
                 console.log("success");
@@ -95,16 +93,18 @@ export default function RouteName() {
             <p>Verification status : {bolval}</p>
             Token Id : {tkid}
           </form>
-          
         </div>
         <div className="flex flex-col gap-2 items-center ">
-            <div className=" justify-center absolute bottom-2">
-              <a className="hover:underline" href="https://mumbai.polygonscan.com/address/0x1387938C0761C817d2474ae5e0F8BC243C2B4f17#code">
-                Deployed with ❤️ at Polygon Mumbai testnet Click to see the
-                contract
-              </a>
-            </div>
+          <div className=" justify-center absolute bottom-2">
+            <a
+              className="hover:underline"
+              href="https://mumbai.polygonscan.com/address/0x1387938C0761C817d2474ae5e0F8BC243C2B4f17#code"
+            >
+              Deployed with ❤️ at Polygon Mumbai testnet Click to see the
+              contract
+            </a>
           </div>
+        </div>
       </div>
     </div>
   );
